@@ -1,0 +1,2 @@
+module WikititlesHelper
+end

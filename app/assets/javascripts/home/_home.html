@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Wiki Updates</h1>
+    <p>
+      A simple application displaying most recently udated articles
+    </p>
+  </div>
+</div>
+<!-- Displays most recent updated wikipedia article titles -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <table class="table table-striped table-bordered">
+        <tr>
+          <th class="text-center">
+            Article Titles
+          </th>
+        </tr>
+        <tr ng-repeat="title in wiki.titles track by $index">
+          <td>
+            {{ title }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
