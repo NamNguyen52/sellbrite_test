@@ -1,14 +1,27 @@
-function WikiCtrl($http, $q, $log) {
-  var vm = this;
-  vm.titles = [];
+function WikiCtrl($http, $q, $log, $interval, wikiService) {
+  const vm = this;
+  let pullLatest = null;
 
-  function getLatesUpdates() {
-    $http.get('/latest.json')
-      .success(function(data) {
-        vm.titles = data;
+  const getLatesUpdates = () => {
+    wikiService.getLatest()
+      .then((data) => {
+        vm.titles = data.data;
+      }, (error) => {
+        $log.log(error);
       });
   };
+
+  vm.startUpdate = () => {
+    pullLatest = $interval(() => { getLatesUpdates(); }, 5000);
+  };
+
+  vm.stopUpdate = () => {
+    $interval.cancel(pullLatest);
+  };
+
   getLatesUpdates();
+  vm.startUpdate();
+
 };
 
 angular.module('wikiTitles')
