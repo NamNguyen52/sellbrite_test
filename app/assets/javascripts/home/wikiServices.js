@@ -1,5 +1,6 @@
-function wikiService($http, $q) {
+function wikiService($http, $q, $log) {
 
+  // calls the rails wikipedia api end point
   this.getLatest = () => {
     const deferred = $q.defer();
     $http.get('/latest.json')

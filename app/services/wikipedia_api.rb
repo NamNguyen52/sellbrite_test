@@ -15,7 +15,7 @@ class WikipediaApi
 
   # Retunrs wikipedia api search params
   def wiki_serach_params
-    {:action => 'query', :list => 'recentchanges', :rcprop => 'title', :format => 'json'}.to_query
+    {:action => 'query', :list => 'recentchanges', :rcprop => 'title', :inprop => 'fullurl', :format => 'json'}.to_query
   end
 
   # Uses HTTParty REST client to hit the wikipedia api
@@ -23,7 +23,7 @@ class WikipediaApi
     HTTParty.get("https://en.wikipedia.org/w/api.php?#{request_params}")
   end
 
-  # Parses json response returned from wikipedia API
+  # Parses json response returned from wikipedia API and array of article JSON objects
   def parse_response(jsonRes)
     JSON.parse(jsonRes.body)['query']['recentchanges']
   end

@@ -1,3 +1,5 @@
+// Angular app setup
+
 var app = angular.module('wikiTitles', ['ui.router','templates'])
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -5,8 +7,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: 'home/_home.html',
-      controller: 'WikiCtrl'
+      templateUrl: 'home/_home.html'
     });
 
   $urlRouterProvider.otherwise('home');
